@@ -12,24 +12,24 @@ public class StepTracker {
     }
 
     static class MonthData {
-        int[] daysDate = new int[30];
+        int[] daysData = new int[30];
     }
     void saveCountSteps(int month, int day, int steps) {
-        monthToData[month].daysDate[day-1] = steps;
+        monthToData[month].daysData[day-1] = steps;
     }
     void statsPerMonth(int month) {
         for (int i = 0; i < 30; i++) {
-            System.out.println((i + 1) + " день: " + monthToData[month].daysDate[i]);
+            System.out.println((i + 1) + " день: " + monthToData[month].daysData[i]);
         }
 
         int sumSteps = 0;
         int maxSteps = 0;
         int avgSteps = 0;
         for (int i = 0; i < 30; i++) {
-            sumSteps = sumSteps + monthToData[month].daysDate[i];
+            sumSteps = sumSteps + monthToData[month].daysData[i];
             avgSteps = sumSteps / 30;
-            if ((monthToData[month].daysDate[i]) > maxSteps) {
-                maxSteps = monthToData[month].daysDate[i];
+            if ((monthToData[month].daysData[i]) > maxSteps) {
+                maxSteps = monthToData[month].daysData[i];
             }
         }
 
@@ -51,7 +51,7 @@ public class StepTracker {
         int bestScoreDays = 0;
 
         for (int i= 0; i < monthToData.length; i++) {
-            if (monthToData[month].daysDate[i] >= TargetSteps) {
+            if (monthToData[month].daysData[i] >= TargetSteps) {
                 indexScoreDays++;
             }
             else indexScoreDays = 0;
