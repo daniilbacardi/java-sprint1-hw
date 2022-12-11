@@ -17,7 +17,7 @@ public class StepTracker {
     void saveCountSteps(int month, int day, int steps) {
         monthToData[month].daysData[day-1] = steps;
     }
-    void statsPerMonth(int month) {
+    void statsPerMonth(int month) { // объединил вычисление нескольких подпунктов
         for (int i = 0; i < 30; i++) {
             System.out.println((i + 1) + " день: " + monthToData[month].daysData[i]);
         }
