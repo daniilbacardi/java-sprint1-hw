@@ -12,24 +12,26 @@ public class StepTracker {
     }
 
     static class MonthData {
-        int[] daysData = new int[30];
+        int[] daysToData = new int[30];
     }
+
     void saveCountSteps(int month, int day, int steps) {
-        monthToData[month].daysData[day-1] = steps;
+        monthToData[month].daysToData[day - 1] = steps;
     }
+
     void statsPerMonth(int month) { // объединил вычисление нескольких подпунктов
         for (int i = 0; i < 30; i++) {
-            System.out.println((i + 1) + " день: " + monthToData[month].daysData[i]);
+            System.out.println((i + 1) + " день: " + monthToData[month].daysToData[i]);
         }
 
         int sumSteps = 0;
         int maxSteps = 0;
         int avgSteps = 0;
         for (int i = 0; i < 30; i++) {
-            sumSteps = sumSteps + monthToData[month].daysData[i];
+            sumSteps = sumSteps + monthToData[month].daysToData[i];
             avgSteps = sumSteps / 30;
-            if ((monthToData[month].daysData[i]) > maxSteps) {
-                maxSteps = monthToData[month].daysData[i];
+            if ((monthToData[month].daysToData[i]) > maxSteps) {
+                maxSteps = monthToData[month].daysToData[i];
             }
         }
 
@@ -50,19 +52,17 @@ public class StepTracker {
         int indexScoreDays = 0;
         int bestScoreDays = 0;
 
-        for (int i= 0; i < monthToData.length; i++) {
-            if (monthToData[month].daysData[i] >= TargetSteps) {
+        for (int i = 0; i < monthToData.length; i++) {
+            if (monthToData[month].daysToData[i] >= TargetSteps) {
                 indexScoreDays++;
-            }
-            else indexScoreDays = 0;
+            } else indexScoreDays = 0;
             if (indexScoreDays > bestScoreDays) {
                 bestScoreDays = indexScoreDays;
             }
         } // исхожу из того, что требование "подряд идущих дней, в течение которых..." - это больше 1 дня
         if (bestScoreDays > 1) {
             System.out.println("Лучшая серия по количеству шагов: " + bestScoreDays);
-        }
-        else
+        } else
             System.out.println("Лучшая серия по количеству шагов: 0");
     }
 }
