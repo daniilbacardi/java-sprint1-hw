@@ -18,14 +18,16 @@ public class Main {
                         "9 - октябрь, 10 - ноябрь, 11 - декабрь");
                 int month = scanner.nextInt();
                 if ((month >= 0) & (month < 12)) {
-                    System.out.println("Введите день (с 1 по 30): ");
+                    System.out.println("Введите дату (с 1 по 30): ");
                     int day = scanner.nextInt();
                     if ((day >= 1) & (day <= 30)) {
-                        System.out.println("Введите количество шагов: ");
+                        System.out.println("Введите количество пройденных шагов: ");
                         int step = scanner.nextInt();
                         if (step > 0) {
                             steptracker.saveCountSteps(month, day, step);
                             System.out.println("Значение сохранено!");
+                        } else {
+                            System.out.println("Количество шагов должно быть больше 0. Начните сначала.");
                         }
                     } else {
                         System.out.println("Введена некорректная дата. Начните сначала.");
