@@ -11,41 +11,17 @@ public class Main {
         int userInput = scanner.nextInt();
         StepTracker steptracker = new StepTracker();
 
-        while (true) { // обрабатываем вырианты выбора пользователя
+        while (true) { // обрабатываем варианты выбора пользователя
             if (userInput == 1) {
-                System.out.println("Введите число - номер месяца: 0 - январь, 1 - февраль, " +
-                        "2 - март, 3 - апрель, 4 - май, 5 - июнь, 6 - июль, 7 - август, 8 - сентябрь, " +
-                        "9 - октябрь, 10 - ноябрь, 11 - декабрь");
-                int month = scanner.nextInt();
-                if ((month >= 0) & (month < 12)) {
-                    System.out.println("Введите дату (с 1 по 30): ");
-                    int day = scanner.nextInt();
-                    if ((day >= 1) & (day <= 30)) {
-                        System.out.println("Введите количество пройденных шагов: ");
-                        int step = scanner.nextInt();
-                        if (step > 0) {
-                            steptracker.saveCountSteps(month, day, step);
-                            System.out.println("Значение сохранено!");
-                        } else {
-                            System.out.println("Количество шагов должно быть больше 0. Начните сначала.");
-                        }
-                    } else {
-                        System.out.println("Введена некорректная дата. Начните сначала.");
-                    }
-                } else {
-                    System.out.println("Введено некорректное значение месяца. Начните сначала.");
-                }
-            } else if (userInput == 2) {
-                System.out.println("Введите месяц - число с 0 (январь) по 11 (декабрь), " +
-                        "за который вы хотите получить статистику: ");
-                int month = scanner.nextInt();
-                if ((month >= 0) & (month < 12)) {
-                    steptracker.statsPerMonth(month);
-                    steptracker.bestStepScores(month);
-                } else {
-                    System.out.println("Вы ввели некорректное значение месяца. Начните сначала.");
-                }
-            } else if (userInput == 3) {
+                int month = inputUserMonth();
+                int day = inputUserDay();
+                int step = inputUserStep();
+                steptracker.saveCountSteps(month, day, step);
+              } else if (userInput == 2) {
+                int month = inputUserMonth();
+                steptracker.statsPerMonth(month);
+                steptracker.bestStepScores(month);
+             } else if (userInput == 3) {
                 System.out.println("Введите новую цель по количеству шагов: ");
                 int newStepsGoal = scanner.nextInt();
                 if (newStepsGoal > 0) {
@@ -69,11 +45,49 @@ public class Main {
 
     private static void printMenu() {
         System.out.println("Что вы хотите сделать?");
-        System.out.println("1 - Ввести количество шагов за определённый день (дни с 1 по 30), в указанный месяц, " +
-                "с 0 (январь) по 11 (декабрь)");
+        System.out.println("1 - Ввести количество шагов за определённый день, в указанный месяц");
         System.out.println("2 - Напечатать статистику за определённый месяц");
         System.out.println("3 - Изменить цель по количеству шагов в день");
         System.out.println("4 - Выйти из приложения");
 
+    }
+
+    private static int inputUserMonth() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Введите номер месяца (с 1 по 12):  ");
+            int month = scanner.nextInt();
+            if ((month < 1) || (month > 12)) {
+                System.out.println("Введено некорректное значение месяца. Начните сначала.");
+            } else {
+                return month-1;
+            }
+        }
+    }
+
+    private static int inputUserDay() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Введите дату (с 1 по 30): ");
+            int day = scanner.nextInt();
+            if ((day < 1) || (day > 30)) {
+                System.out.println("Введена некорректная дата. Начните сначала.");
+            } else {
+                return day;
+            }
+        }
+    }
+
+    private static int inputUserStep() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Введите количество пройденных шагов: ");
+            int step = scanner.nextInt();
+            if (step < 0) {
+                System.out.println("Количество шагов не должно быть отрицательным. Начните сначала.");
+            } else {
+                return step;
+            }
+        }
     }
 }

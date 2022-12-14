@@ -1,6 +1,6 @@
 public class StepTracker {
 
-    int TargetSteps = 10000;
+    int targetSteps = 10000;
     Converter converter = new Converter();
     MonthData[] monthToData;
 
@@ -17,6 +17,7 @@ public class StepTracker {
 
     void saveCountSteps(int month, int day, int steps) {
         monthToData[month].daysToData[day - 1] = steps;
+        System.out.println("Значение сохранено!");
     }
 
     void statsPerMonth(int month) { // объединил вычисление нескольких подпунктов
@@ -44,25 +45,21 @@ public class StepTracker {
 
     void TrgSteps(int goal) {
         System.out.println("Новая цель по количеству шагов " + goal);
-        TargetSteps = goal;
+        targetSteps = goal;
     }
 
     void bestStepScores(int month) {
-
         int indexScoreDays = 0;
         int bestScoreDays = 0;
 
-        for (int i = 0; i < monthToData.length; i++) {
-            if (monthToData[month].daysToData[i] >= TargetSteps) {
+        for (int i = 0; i < 30; i++) {
+            if (monthToData[month].daysToData[i] >= targetSteps) {
                 indexScoreDays++;
             } else indexScoreDays = 0;
             if (indexScoreDays > bestScoreDays) {
                 bestScoreDays = indexScoreDays;
             }
-        } // исхожу из того, что требование "подряд идущих дней, в течение которых..." - это больше 1 дня
-        if (bestScoreDays > 1) {
+        }
             System.out.println("Лучшая серия по количеству шагов: " + bestScoreDays);
-        } else
-            System.out.println("Лучшая серия по количеству шагов: 0");
     }
 }
