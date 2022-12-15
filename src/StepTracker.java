@@ -20,15 +20,15 @@ public class StepTracker {
         System.out.println("Значение сохранено!");
     }
 
-    void statsPerMonth(int month) { // объединил вычисление нескольких подпунктов
-        for (int i = 0; i < 30; i++) {
+    void statsPerMonth(int month) { // быстро разнести на отдельные методы не получилось - буду еще пробовать
+        for (int i = 0; i < monthToData[month].daysToData.length; i++) {
             System.out.println((i + 1) + " день: " + monthToData[month].daysToData[i]);
         }
 
         int sumSteps = 0;
         int maxSteps = 0;
         int avgSteps = 0;
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < monthToData[month].daysToData.length; i++) {
             sumSteps = sumSteps + monthToData[month].daysToData[i];
             avgSteps = sumSteps / 30;
             if ((monthToData[month].daysToData[i]) > maxSteps) {
@@ -52,7 +52,7 @@ public class StepTracker {
         int indexScoreDays = 0;
         int bestScoreDays = 0;
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < monthToData[month].daysToData.length; i++) {
             if (monthToData[month].daysToData[i] >= targetSteps) {
                 indexScoreDays++;
             } else indexScoreDays = 0;
@@ -60,6 +60,6 @@ public class StepTracker {
                 bestScoreDays = indexScoreDays;
             }
         }
-            System.out.println("Лучшая серия по количеству шагов: " + bestScoreDays);
+        System.out.println("Лучшая серия по количеству шагов: " + bestScoreDays);
     }
 }

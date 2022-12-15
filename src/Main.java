@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         System.out.println("«Счётчик шагов и калорий»");
 
-        Scanner scanner = new Scanner(System.in);
         printMenu();
         int userInput = scanner.nextInt();
         StepTracker steptracker = new StepTracker();
@@ -53,7 +54,7 @@ public class Main {
     }
 
     private static int inputUserMonth() {
-        Scanner scanner = new Scanner(System.in);
+
         while (true) {
             System.out.println("Введите номер месяца (с 1 по 12):  ");
             int month = scanner.nextInt();
@@ -66,7 +67,6 @@ public class Main {
     }
 
     private static int inputUserDay() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Введите дату (с 1 по 30): ");
             int day = scanner.nextInt();
@@ -79,8 +79,7 @@ public class Main {
     }
 
     private static int inputUserStep() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+         while (true) {
             System.out.println("Введите количество пройденных шагов: ");
             int step = scanner.nextInt();
             if (step < 0) {
